@@ -26,14 +26,15 @@ Part B: How would you modify the code so that reassigning `playlist2.songCount` 
 
 ### Response 1
 
-Your response...
+**Part A**: `15` will be logged to the console. The `const playlist2 = playlist1` does not create a new object, but instead `playlist2` references the same object as `playlist1`.
+
 
 **Corrected Code:**
 
 ```js
 // fix this!
 const playlist1 = { name: "My Favorites", songCount: 10 };
-const playlist2 = playlist1;
+const playlist2 = { ...playlist1}; // the spread operator creates a shallow copy of the original object
 playlist2.songCount = 15;
 console.log(playlist1.songCount);
 ```
@@ -60,7 +61,10 @@ For each task below, identify which array method (forEach, filter, map, find, or
 
 ### Response 2
 
-Your response...
+1. filter
+2. find
+3. reduce
+4. map
 
 ---
 
@@ -82,7 +86,17 @@ console.log(upperCaseLetters);
 
 ### Response 3
 
-Your response...
+The error occurs because `capitalize()` is called without any arguments. The `map()` gives `undefined` instead of a function.
+
+To fix this, pass the function reference instead: 
+```js
+const upperCaseLetters = letters.map(capitalize)
+```
+
+To avoid this in the future, remember that **map()** is a function that expects a function reference. When you need to pass arguments, wrap the call in an arrow function like this: 
+```js
+letters.map(letter => capitalize(letter))
+```
 
 ---
 
@@ -111,4 +125,12 @@ const grandTotal = orders.reduce((sum, order) => {
 
 ### Response 4
 
-Your response...
+**Part A**: After this code runs, `grandTotal` will equal `135`.
+
+**Part B**: The `0` at the end of the **reduce** method is the initial value of the **accumulator**. It determines the initial value the accumulator starts with before the first element in the array is evaluated.
+
+**Part C**: 
+The FIRST iteration of reduce:
+- **value of sum**: 0
+- **value of order**: 45
+- **return**: 45
